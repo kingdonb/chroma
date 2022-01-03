@@ -1453,7 +1453,7 @@ func replaceRule(rule ruleReplacingConfig) MutatorFunc {
 
 		// Pop state name from stack if asked. State should be popped first before Pushing
 		if rule.popState {
-			err := Pop(1)(state)
+			err := Pop(1).Mutate(state)
 			if err != nil {
 				panic(err)
 			}
@@ -1461,7 +1461,7 @@ func replaceRule(rule ruleReplacingConfig) MutatorFunc {
 
 		// Push state name to stack if asked
 		if rule.pushState {
-			err := Push(stateName)(state)
+			err := Push(stateName).Mutate(state)
 			if err != nil {
 				panic(err)
 			}
